@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Generate quran in JSON file each surah represent in one json file.
+# Generate quran in JSON file each surah saved in one json file.
 # As an example surah number 1 will be saved as:
 #
 # ```
