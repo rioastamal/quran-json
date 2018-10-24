@@ -9,7 +9,7 @@
 #
 # Usage:
 # ------
-# ./generator /path/to/quran.txt /path/to/quran.id.txt
+# bash generator.sh /path/to/quran.txt /path/to/quran.id.txt
 #
 # @author Rio Astamal <rio@rioastamal.net>
 # @require quran-single-file <https://github.com/rioastamal/quran-single-file>
