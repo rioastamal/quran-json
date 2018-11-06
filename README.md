@@ -8,6 +8,7 @@ Al-Quran adalah kitab suci sempurna yang diturunkan Allah SWT. segala bentuk kes
 
 Project Al-Quran lain:
 
+- [quran-web](https://github.com/rioastamal/quran-web)
 - [quran-text](https://github.com/rioastamal/quran-text)
 - [quran-single-file](https://github.com/rioastamal/quran-single-file)
 
