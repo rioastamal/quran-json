@@ -9,13 +9,12 @@
 #
 # Usage:
 # ------
-# bash generator.sh /path/to/quran.txt /path/to/quran.id.txt
+# export QURAN_TEXT_DIR=path/to/quran-text
+# bash generator.sh
 #
 # @author Rio Astamal <rio@rioastamal.net>
-# @require quran-single-file <https://github.com/rioastamal/quran-single-file>
+# @require quran-text <https://github.com/rioastamal/quran-text>
 
-quran_file=$1
-quran_trans_file=$2
 total_ayah=(7 286 200 176 120 165 206 75 129 109 123 111 43 52 \
     99 128 111 110 98 135 112 78 118 64 77 227 93 88 69 60 34 \
     30 73 54 45 83 182 88 75 85 54 53 89 59 37 35 38 29 18 45 \
@@ -96,7 +95,7 @@ do
     line=$last_line
     for ayah_number in $( seq 1 ${total_ayah[$surah-1]} )
     do
-        arabic=$( tail -n+$line "$quran_file" | head -1 )
+        arabic=$( cat $QURAN_TEXT_DIR/surah/$surah/$ayah_number.txt | sed 's/"/\\"/g' )
         comma=","
 
         if [ $ayah_number -eq ${total_ayah[$surah-1]} ]; then
@@ -116,11 +115,11 @@ do
                 "text": {
 ' "$lang_id" "${surah_name_trans_id[$surah-1]}" >> surah/${surah}.json
 
-    # Generate each ayah in latin text (Bahasa Indonesia)
+    # Generate each ayah of latin text (Bahasa Indonesia)
     line=$last_line
     for ayah_number in $( seq 1 ${total_ayah[$surah-1]} )
     do
-        latin=$( tail -n+$line "$quran_trans_file" | head -1 | sed 's/"/\\"/g' )
+        latin=$( cat $QURAN_TEXT_DIR/translations/id/$surah/$ayah_number.txt | sed 's/"/\\"/g' )
         comma=","
 
         if [ $ayah_number -eq ${total_ayah[$surah-1]} ]; then
@@ -133,7 +132,37 @@ do
         line=$(( $line + 1 ))
     done
 
+    # Closing bracket for translations
     printf '                }
+            }
+        },
+        "tafsir": {
+            "%s": {
+                "kemenag": {
+                    "text": {
+' "$lang_id" >> surah/${surah}.json
+
+
+    # Generate each ayah of tafsir (Tafsir Kemenag)
+    line=$last_line
+    for ayah_number in $( seq 1 ${total_ayah[$surah-1]} )
+    do
+        tafsir=$( cat $QURAN_TEXT_DIR/tafsir/id/kemenag/$surah/$ayah_number.txt | sed 's/"/\\"/g' )
+        comma=","
+
+        if [ $ayah_number -eq ${total_ayah[$surah-1]} ]; then
+            comma=""
+        fi
+
+        printf '                        "%s": "%s"%s' "$ayah_number" "$tafsir" "$comma">> surah/${surah}.json
+        echo "" >> surah/${surah}.json
+
+        line=$(( $line + 1 ))
+    done
+
+    # Closing bracket for Tafsir Kemenag
+    printf '                    }
+                }
             }
         }
     }
