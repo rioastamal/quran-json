@@ -14,7 +14,7 @@ Project Al-Quran lain:
 
 ## Latar Belakang
 
-Latar belakang kenapa saya membuat project ini adalah karena pada handphone  saya yaitu Blackberry Passport (SE) tidak ada aplikasi atau mobile website Quran yang dapat berjalan dengan baik di perangkat saya tersebut. 
+Latar belakang kenapa saya membuat project ini adalah karena pada handphone  saya yaitu Blackberry Passport (SE) tidak ada aplikasi atau mobile website Quran yang dapat berjalan dengan baik di perangkat saya tersebut.
 
 Kebanyakan mobile site tersebut menggunakan terlalu banyak javascript sehingga lambat atau kadang tampilannya tidak sesuai dengan yang saya inginkan. Sehingga saya berinisiatif untuk membuat situs mobile Quran static yang ringan dan juga mudah digunakan. Tentunya sesuai selera saya karena untuk saya gunakan pribadi.
 
@@ -26,12 +26,12 @@ Sumber utama ayat-ayat Al-Quran dan terjemahannya dalam project ini didapat dari
 
 ## Generator
 
-File yang ada di folder surah/ dihasilkan oleh Bash script `generator.sh`. Script ini memerlukan file quran dan terjemahan yang ada pada project [quran-single-file](https://github.com/rioastamal/quran-single-file).
+File yang ada di folder surah/ dihasilkan oleh Bash script `generator.sh`. Script ini memerlukan file quran dan terjemahan yang ada pada project [quran-text](https://github.com/rioastamal/quran-text).
 
 Cara menjalankan script.
 
 ```
-$ bash generator.sh /path/to/quran.txt /path/to/quran.id.txt
+$ QURAN_TEXT_DIR=/path/to/quran-text bash generator.sh
 Generating surah 1 - Al-Fatihah - الفاتحة ...done.
 Generating surah 2 - Al-Baqarah - البقرة ...done.
 Generating surah 3 - Ali 'Imran - اٰل عمران ...done.
