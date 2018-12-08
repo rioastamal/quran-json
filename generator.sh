@@ -139,8 +139,10 @@ do
         "tafsir": {
             "%s": {
                 "kemenag": {
+                    "name": "%s",
+                    "source": "%s",
                     "text": {
-' "$lang_id" >> surah/${surah}.json
+' "$lang_id" "$( cat $QURAN_TEXT_DIR/tafsir/id/kemenag/name.txt )" "$( cat $QURAN_TEXT_DIR/tafsir/id/kemenag/source.txt )" >> surah/${surah}.json
 
 
     # Generate each ayah of tafsir (Tafsir Kemenag)
